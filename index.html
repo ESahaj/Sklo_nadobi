@@ -232,14 +232,28 @@ const nextBtn = document.getElementById("nextBtn");
 const resultsContainer = document.getElementById("resultsContainer");
 
 function startNewRound(){
-  questions = shuffle([...allQuestions]).slice(0,10);
+  // 1️⃣ vytvoříme mapu unikátních otázek podle názvu
+  const uniqueQuestionsMap = new Map();
+  allQuestions.forEach(q => {
+    if (!uniqueQuestionsMap.has(q.text)) {
+      uniqueQuestionsMap.set(q.text, q);
+    }
+  });
+
+  // 2️⃣ převedeme zpět na pole unikátních otázek
+  const uniqueQuestions = Array.from(uniqueQuestionsMap.values());
+
+  // 3️⃣ zamícháme a vybereme 10 otázek
+  questions = shuffle(uniqueQuestions).slice(0, 10);
+
+  // 4️⃣ inicializace proměnných
   current = 0;
   results = [];
   answered = false;
   resultsContainer.innerHTML = "";
 
-  img1.className="";
-  img2.className="";
+  img1.className = "";
+  img2.className = "";
   questionEl.style.display = "block";
   img1.style.display = "inline-block";
   img2.style.display = "inline-block";
