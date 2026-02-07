@@ -143,7 +143,7 @@ button:hover {
 <body>
 
 <div class="container" id="app">
-  <div class="atom">🧪SKLO & NÁDOBÍ</div>
+  <div class="atom">⚛️</div>
   <h1 id="question"></h1>
 
   <div class="images">
@@ -159,13 +159,67 @@ button:hover {
 // ===== OTÁZKY =====
 const allQuestions = [
   {text:"Alonž", images:["obrazky/alonz.jpg","obrazky/chladic.jpg"], correct:0},
-  {text:"Chladič", images:["obrazky/promyvacka.jpg","obrazky/chladic.jpg"], correct:1},
-  {text:"Dělená pipeta", images:["obrazky/delena_pipeta.jpg","obrazky/delici_nalevka.jpg"], correct:0},
-  {text:"Dělící nálevka", images:["obrazky/chladic.jpg","obrazky/delici_nalevka.jpg"], correct:1},
-  {text:"Navažovací lodička", images:["obrazky/lodicka.jpg","obrazky/svorka.jpg"], correct:0},
-  {text:"Promývačka", images:["obrazky/stricka.jpg","obrazky/promyvacka.jpg"], correct:1},
-  {text:"Svorka", images:["obrazky/alonz.jpg","obrazky/svorka.jpg"], correct:1},
-  {text:"Třecí miska s tloučkem", images:["obrazky/treci_miska.jpg","obrazky/svorka.jpg"], correct:0},
+{text:"Byreta", images:["obrazky/lodicka.jpg","obrazky/byreta.jpg"], correct:1},
+{text:"Držák na zkumavky", images:["obrazky/drzak.jpg","obrazky/treci_miska.jpg"], correct:0},
+{text:"Exsikátor", images:["obrazky/promyvacka.jpg","obrazky/exsikator.jpg"], correct:1},
+{text:"Frakční baňka", images:["obrazky/frakcni_banka.jpg","obrazky/odmerna_banka.jpg"], correct:0},
+{text:"Chladič", images:["obrazky/odmerny_valec.jpg","obrazky/chladic.jpg"], correct:1},
+{text:"Dělená pipeta", images:["obrazky/delena_pipeta.jpg","obrazky/delici_nalevka.jpg"], correct:0},
+{text:"Dělící nalevka", images:["obrazky/kuzelova_banka.jpg","obrazky/delici_nalevka.jpg"], correct:1},
+{text:"Kuželová baňka", images:["obrazky/kuzelova_banka.jpg","obrazky/stricka.jpg"], correct:0},
+{text:"Navažovací lodička", images:["obrazky/lodicka.jpg","obrazky/triangl.jpg"], correct:0},
+{text:"Nálevka", images:["obrazky/nalevka.jpg","obrazky/svorka.jpg"], correct:0},
+{text:"Odměrná baňka", images:["obrazky/promyvacka.jpg","obrazky/odmerna_banka.jpg"], correct:1},
+{text:"Odměrný válec", images:["obrazky/odmerny_valec.jpg","obrazky/zkumavka.jpg"], correct:0},
+{text:"Odsávací baňka", images:["obrazky/odsavaci_banka.jpg","obrazky/stricka.jpg"], correct:0},
+{text:"Promývačka", images:["obrazky/triangl.jpg","obrazky/promyvacka.jpg"], correct:1},
+{text:"Střička", images:["obrazky/stricka.jpg","obrazky/zkumavka.jpg"], correct:0},
+{text:"Svorka", images:["obrazky/svorka.jpg","obrazky/lodicka.jpg"], correct:0},
+{text:"Třecí miska", images:["obrazky/treci_miska.jpg","obrazky/kuzelova_banka.jpg"], correct:0},
+{text:"Triangl", images:["obrazky/triangl.jpg","obrazky/delena_pipeta.jpg"], correct:0},
+{text:"Zkumavka", images:["obrazky/zkumavka.jpg","obrazky/byreta.jpg"], correct:0},
+
+{text:"Alonž", images:["obrazky/chladic.jpg","obrazky/alonz.jpg"], correct:1},
+{text:"Byreta", images:["obrazky/byreta.jpg","obrazky/drzak.jpg"], correct:0},
+{text:"Držák na zkumavky", images:["obrazky/treci_miska.jpg","obrazky/drzak.jpg"], correct:1},
+{text:"Exsikátor", images:["obrazky/exsikator.jpg","obrazky/nalevka.jpg"], correct:0},
+{text:"Frakční baňka", images:["obrazky/odmerna_banka.jpg","obrazky/frakcni_banka.jpg"], correct:1},
+{text:"Chladič", images:["obrazky/chladic.jpg","obrazky/lodicka.jpg"], correct:0},
+{text:"Dělená pipeta", images:["obrazky/delici_nalevka.jpg","obrazky/delena_pipeta.jpg"], correct:1},
+{text:"Dělící nálevka", images:["obrazky/delici_nalevka.jpg","obrazky/odsavaci_banka.jpg"], correct:0},
+{text:"Kuželová baňka", images:["obrazky/stricka.jpg","obrazky/kuzelova_banka.jpg"], correct:1},
+{text:"Navažovací lodička", images:["obrazky/triangl.jpg","obrazky/lodicka.jpg"], correct:1},
+{text:"Nálevka", images:["obrazky/svorka.jpg","obrazky/nalevka.jpg"], correct:1},
+{text:"Odměrná baňka", images:["obrazky/odmerna_banka.jpg","obrazky/triangl.jpg"], correct:0},
+{text:"Odměrný válec", images:["obrazky/zkumavka.jpg","obrazky/odmerny_valec.jpg"], correct:1},
+{text:"Odsávací baňka", images:["obrazky/odsavaci_banka.jpg","obrazky/frakcni_banka.jpg"], correct:0},
+{text:"Promývačka", images:["obrazky/promyvacka.jpg","obrazky/treci_miska.jpg"], correct:0},
+{text:"Střička", images:["obrazky/zkumavka.jpg","obrazky/stricka.jpg"], correct:1},
+{text:"Svorka", images:["obrazky/lodicka.jpg","obrazky/svorka.jpg"], correct:1},
+{text:"Třecí miska", images:["obrazky/treci_miska.jpg","obrazky/byreta.jpg"], correct:0},
+{text:"Triangl", images:["obrazky/delena_pipeta.jpg","obrazky/triangl.jpg"], correct:1},
+{text:"Zkumavka", images:["obrazky/byreta.jpg","obrazky/zkumavka.jpg"], correct:1},
+
+{text:"Alonž", images:["obrazky/alonz.jpg","obrazky/byreta.jpg"], correct:0},
+{text:"Byreta", images:["obrazky/drzak.jpg","obrazky/byreta.jpg"], correct:1},
+{text:"Držák na zkumavky", images:["obrazky/drzak.jpg","obrazky/exsikator.jpg"], correct:0},
+{text:"Exsikátor", images:["obrazky/promyvacka.jpg","obrazky/exsikator.jpg"], correct:1},
+{text:"Frakční baňka", images:["obrazky/frakcni_banka.jpg","obrazky/nalevka.jpg"], correct:0},
+{text:"Chladič", images:["obrazky/chladic.jpg","obrazky/odsavaci_banka.jpg"], correct:0},
+{text:"Dělená pipeta", images:["obrazky/delena_pipeta.jpg","obrazky/kuzelova_banka.jpg"], correct:0},
+{text:"Dělící nálevka", images:["obrazky/delici_nalevka.jpg","obrazky/odmerny_valec.jpg"], correct:0},
+{text:"Kuželová baňka", images:["obrazky/kuzelova_banka.jpg","obrazky/triangl.jpg"], correct:0},
+{text:"Navažovací lodička", images:["obrazky/lodicka.jpg","obrazky/sticka.jpg"], correct:0},
+{text:"Nálevka", images:["obrazky/nalevka.jpg","obrazky/exsikator.jpg"], correct:0},
+{text:"Odměrná baňka", images:["obrazky/odmerna_banka.jpg","obrazky/frakcni_banka.jpg"], correct:0},
+{text:"Odměrný válec", images:["obrazky/odmerny_valec.jpg","obrazky/chladic.jpg"], correct:0},
+{text:"Odsávací baňka", images:["obrazky/odsavaci_banka.jpg","obrazky/treci_miska.jpg"], correct:0},
+{text:"Promývačka", images:["obrazky/promyvacka.jpg","obrazky/delici_nalevka.jpg"], correct:0},
+{text:"Střička", images:["obrazky/stricka.jpg","obrazky/triangl.jpg"], correct:0},
+{text:"Svorka", images:["obrazky/svorka.jpg","obrazky/alonz.jpg"], correct:0},
+{text:"Třecí miska", images:["obrazky/treci_miska.jpg","obrazky/promyvacka.jpg"], correct:0},
+{text:"Triangl", images:["obrazky/triangl.jpg","obrazky/chladic.jpg"], correct:0},
+{text:"Zkumavka", images:["obrazky/zkumavka.jpg","obrazky/nalevka.jpg"], correct:0},
 ];
 
 let questions = [];
