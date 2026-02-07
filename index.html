@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CHEMICKÉ SKLO A NÁDOBÍ – hra</title>
+<title>POZNEJ ATOM – hra</title>
 <style>
 body {
   font-family: Arial, sans-serif;
@@ -37,7 +37,7 @@ h1,h2 { color:#2c3e50; }
   gap: 40px;
   justify-content: center;
   margin: 30px 0;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* vždy vedle sebe */
 }
 
 .images img {
@@ -57,7 +57,7 @@ h1,h2 { color:#2c3e50; }
 .wrong   { border-color:#e74c3c; box-shadow:0 0 0 4px rgba(231,76,60,0.4); }
 
 button {
-  display:none;
+  display:none; /* zobrazí se až po odpovědi */
   margin:0 auto 30px;
   padding:12px 34px;
   border-radius:999px;
@@ -114,17 +114,12 @@ button:hover {
 
   .images {
     gap: 20px;
+    flex-wrap: nowrap; /* stále vedle sebe */
   }
 
   .images img {
-    width: 100%;   /* obrázky pod sebou */
-    max-width: 100%;
-  }
-
-  button {
-    width: 100%;
-    font-size: 18px;
-    padding: 14px;
+    width: 48%;   /* obrázky vedle sebe i na mobilu */
+    max-width: 48%;
   }
 
   .review-item {
@@ -178,14 +173,12 @@ let current = 0;
 let results = [];
 let answered = false;
 
-// prvky
 const questionEl = document.getElementById("question");
 const img1 = document.getElementById("img1");
 const img2 = document.getElementById("img2");
 const nextBtn = document.getElementById("nextBtn");
 const resultsContainer = document.getElementById("resultsContainer");
 
-// ===== START NOVÉHO KOLA =====
 function startNewRound(){
   questions = shuffle([...allQuestions]).slice(0,10);
   current = 0;
@@ -203,7 +196,6 @@ function startNewRound(){
   loadQuestion();
 }
 
-// ===== UTILITY =====
 function shuffle(array){
   for(let i=array.length-1;i>0;i--){
     const j=Math.floor(Math.random()*(i+1));
@@ -212,7 +204,6 @@ function shuffle(array){
   return array;
 }
 
-// ===== OTÁZKY =====
 function loadQuestion(){
   const q = questions[current];
   questionEl.textContent = q.text;
@@ -221,7 +212,7 @@ function loadQuestion(){
   img1.className="";
   img2.className="";
   answered=false;
-  nextBtn.style.display="none";
+  nextBtn.style.display = "none"; // tlačítko skryté až do odpovědi
 }
 
 function choose(option){
@@ -239,7 +230,8 @@ function choose(option){
     chosenImg:q.images[option],
     isCorrect:option===correct
   });
-  nextBtn.style.display="block";
+
+  nextBtn.style.display="block"; // zobraz tlačítko
 }
 
 function nextQuestion(){
@@ -248,7 +240,6 @@ function nextQuestion(){
   else showResults();
 }
 
-// ===== VÝSLEDKY =====
 function showResults(){
   questionEl.style.display = "none";
   img1.style.display = "none";
@@ -278,7 +269,6 @@ function showResults(){
   resultsContainer.innerHTML = html;
 }
 
-// ===== SPUŠTĚNÍ =====
 startNewRound();
 </script>
 
