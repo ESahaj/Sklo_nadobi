@@ -37,7 +37,7 @@ h1,h2 { color:#2c3e50; }
   gap: 40px;
   justify-content: center;
   margin: 30px 0;
-  flex-wrap: nowrap; /* vždy vedle sebe */
+  flex-wrap: nowrap;
 }
 
 .images img {
@@ -57,7 +57,7 @@ h1,h2 { color:#2c3e50; }
 .wrong   { border-color:#e74c3c; box-shadow:0 0 0 4px rgba(231,76,60,0.4); }
 
 button {
-  display:none; /* zobrazí se až po odpovědi */
+  display:none;
   margin:0 auto 30px;
   padding:12px 34px;
   border-radius:999px;
@@ -92,51 +92,19 @@ button:hover {
 
 #retryBtn { display:block; margin:0 auto 30px; }
 
-/* 📱 MOBIL */
 @media (max-width: 600px) {
-
-  body {
-    padding: 10px;
-  }
-
-  .container {
-    padding: 20px 15px 25px;
-    border-radius: 14px;
-  }
-
-  h1 {
-    font-size: 22px;
-  }
-
-  .atom {
-    font-size: 34px;
-  }
-
-  .images {
-    gap: 20px;
-    flex-wrap: nowrap; /* stále vedle sebe */
-  }
-
-  .images img {
-    width: 48%;   /* obrázky vedle sebe i na mobilu */
-    max-width: 48%;
-  }
-
-  .review-item {
-    width: 140px;
-  }
+  body { padding: 10px; }
+  .container { padding: 20px 15px 25px; border-radius: 14px; }
+  h1 { font-size: 22px; }
+  .atom { font-size: 34px; }
+  .images { gap: 20px; flex-wrap: nowrap; }
+  .images img { width: 48%; max-width: 48%; }
+  .review-item { width: 140px; }
 }
 
-/* 📱📱 EXTRA MALÉ MOBILY */
 @media (max-width: 400px) {
-
-  h1 {
-    font-size: 20px;
-  }
-
-  .review-item {
-    width: 120px;
-  }
+  h1 { font-size: 20px; }
+  .review-item { width: 120px; }
 }
 </style>
 </head>
@@ -157,61 +125,18 @@ button:hover {
 
 <script>
 // ===== OTÁZKY =====
+// Každá otázka je unikátní kombinace text+obrázky
 const allQuestions = [
-{text:"Alonž", images:["obrazky/chladic.jpg","obrazky/alonz.jpg"], correct:1},
-{text:"Byreta", images:["obrazky/byreta.jpg","obrazky/delena_pipeta.jpg"], correct:0},
-{text:"Chladič", images:["obrazky/promyvacka.jpg","obrazky/chladic.jpg"], correct:1},
-{text:"Dělená pipeta", images:["obrazky/pipeta_nedelena.jpg","obrazky/delena_pipeta.jpg"], correct:1},
-{text:"Dělená pipeta", images:["obrazky/delena_pipeta.jpg","obrazky/pipeta_nedelena.jpg"], correct:0},
-{text:"Dělicí nálevka", images:["obrazky/nalevka.jpg","obrazky/delici_nalevka.jpg"], correct:1},
-{text:"Držák na zkumavky", images:["obrazky/drzak.jpg","obrazky/stojan_zkumavek.jpg"], correct:0},
-{text:"Exsikátor", images:["obrazky/u_trubice.jpg","obrazky/exsikator.jpg"], correct:1},
-{text:"Erlenmayerova baňka", images:["obrazky/kuzelova_banka.jpg","obrazky/frakcni_banka.jpg"], correct:0},
-{text:"Frakční baňka", images:["obrazky/frakcni_banka.jpg","obrazky/odsavaci_banka.jpg"], correct:0},
-{text:"Kádinka", images:["obrazky/kuzelova_banka.jpg","obrazky/kadinka.jpg"], correct:1},
-{text:"Kahan", images:["obrazky/zelezny_kruh.jpg","obrazky/kahan.jpg"], correct:1},
-{text:"Žíhací kelímek", images:["obrazky/kelimek.jpg","obrazky/lodicka.jpg"], correct:0},
-{text:"Kuželová baňka", images:["obrazky/frakcni_banka.jpg","obrazky/kuzelova_banka.jpg"], correct:1},
-{text:"Navažovací lodička", images:["obrazky/lodicka.jpg","obrazky/alonz.jpg"], correct:0},
-{text:"Nálevka", images:["obrazky/nalevka.jpg","obrazky/odmerna_banka.jpg"], correct:0},
-{text:"Odměrná baňka", images:["obrazky/odmerny_valec.jpg","obrazky/odmerna_banka.jpg"], correct:1},
-{text:"Odměrný válec", images:["obrazky/odmerny_valec.jpg","obrazky/delena_pipeta.jpg"], correct:0},
-{text:"Odsávací baňka", images:["obrazky/odsavaci_banka.jpg","obrazky/frakcni_banka.jpg"], correct:0},
-{text:"Nedělená pipeta", images:["obrazky/lodicka.jpg","obrazky/pipeta_nedelena.jpg"], correct:0},
-{text:"Promývačka", images:["obrazky/exsikator.jpg","obrazky/promyvacka.jpg"], correct:1},
-{text:"Stojan na zkumavky", images:["obrazky/drzak.jpg","obrazky/stojan_zkumavek.jpg"], correct:1},
-{text:"Střička", images:["obrazky/promyvacka.jpg","obrazky/stricka.jpg"], correct:1},
-{text:"Svorka", images:["obrazky/drzak.jpg","obrazky/svorka.jpg"], correct:1},
-{text:"Třecí miska s tloučkem", images:["obrazky/lodicka.jpg","obrazky/treci_miska.jpg"], correct:1},
-{text:"Nálevka", images:["obrazky/nalevka.jpg","obrazky/delici_nalevka.jpg"], correct:0},
-{text:"U-trubice", images:["obrazky/kelimek.jpg","obrazky/u_trubice.jpg"], correct:1},
-{text:"Skleněná vana", images:["obrazky/vana.jpg","obrazky/stojan_zkumavek.jpg"], correct:0},
-{text:"Železný kruh", images:["obrazky/triangl.jpg","obrazky/zelezny_kruh.jpg"], correct:1},
-{text:"Zkumavka", images:["obrazky/u_trubice.jpg","obrazky/zkumavka.jpg"], correct:1},
-{text:"Alonž", images:["obrazky/alonz.jpg","obrazky/odmerna_banka.jpg"], correct:0},
-{text:"Byreta", images:["obrazky/odmerny_valec.jpg","obrazky/byreta.jpg"], correct:1},
-{text:"Chladič", images:["obrazky/chladic.jpg","obrazky/u_trubice.jpg"], correct:0},
-{text:"Dělená pipeta", images:["obrazky/byreta.jpg","obrazky/delena_pipeta.jpg"], correct:1},
-{text:"Dělicí nálevka", images:["obrazky/delici_nalevka.jpg","obrazky/frakcni_banka.jpg"], correct:0},
-{text:"Držák na zkumavky", images:["obrazky/zelezny_kruh.jpg","obrazky/drzak.jpg"], correct:1},
-{text:"Exsikátor", images:["obrazky/exsikator.jpg","obrazky/treci_miska.jpg"], correct:0},
-{text:"Erlenmayerova baňka", images:["obrazky/kadinka.jpg","obrazky/kuzelova_banka.jpg"], correct:1},
-{text:"Frakční baňka", images:["obrazky/frakcni_banka.jpg","obrazky/chladic.jpg"], correct:0},
-{text:"Kádinka", images:["obrazky/odmerna_banka.jpg","obrazky/kadinka.jpg"], correct:1},
-{text:"Kahan", images:["obrazky/kahan.jpg","obrazky/triangl.jpg"], correct:0},
-{text:"Žíhací kelímek", images:["obrazky/lodicka.jpg","obrazky/kelimek.jpg"], correct:1},
-{text:"Kuželová baňka", images:["obrazky/kuzelova_banka.jpg","obrazky/odsavaci_banka.jpg"], correct:0},
-{text:"Navažovací lodička", images:["obrazky/alonz.jpg","obrazky/lodicka.jpg"], correct:1},
-{text:"Nálevka", images:["obrazky/nalevka.jpg","obrazky/kahan.jpg"], correct:0},
-{text:"Odměrná baňka", images:["obrazky/frakcni_banka.jpg","obrazky/odmerna_banka.jpg"], correct:1},
-{text:"Odměrný válec", images:["obrazky/odmerny_valec.jpg","obrazky/zkumavka.jpg"], correct:0},
-{text:"Odsávací baňka", images:["obrazky/kuzelova_banka.jpg","obrazky/odsavaci_banka.jpg"], correct:1},
-{text:"Promývačka", images:["obrazky/promyvacka.jpg","obrazky/kahan.jpg"], correct:0},
-{text:"Stojan na zkumavky", images:["obrazky/triangl.jpg","obrazky/stojan_zkumavek.jpg"], correct:1},
-{text:"Střička", images:["obrazky/stricka.jpg","obrazky/odmerna_banka.jpg"], correct:0},
-{text:"Svorka", images:["obrazky/drzak.jpg","obrazky/svorka.jpg"], correct:1},
-{text:"Třecí miska s tloučkem", images:["obrazky/treci_miska.jpg","obrazky/exsikator.jpg"], correct:0},
-{text:"U-trubice", images:["obrazky/kelimek.jpg","obrazky/u_trubice.jpg"], correct:1},
+  {text:"Alonž", images:["obrazky/chladic.jpg","obrazky/alonz.jpg"], correct:1},
+  {text:"Byreta", images:["obrazky/byreta.jpg","obrazky/delena_pipeta.jpg"], correct:0},
+  {text:"Chladič", images:["obrazky/promyvacka.jpg","obrazky/chladic.jpg"], correct:1},
+  {text:"Dělená pipeta", images:["obrazky/pipeta_nedelena.jpg","obrazky/delena_pipeta.jpg"], correct:1},
+  {text:"Dělicí nálevka", images:["obrazky/nalevka.jpg","obrazky/delici_nalevka.jpg"], correct:1},
+  {text:"Držák na zkumavky", images:["obrazky/drzak.jpg","obrazky/stojan_zkumavek.jpg"], correct:0},
+  {text:"Exsikátor", images:["obrazky/u_trubice.jpg","obrazky/exsikator.jpg"], correct:1},
+  {text:"Kádinka", images:["obrazky/kuzelova_banka.jpg","obrazky/kadinka.jpg"], correct:1},
+  {text:"Kahan", images:["obrazky/zelezny_kruh.jpg","obrazky/kahan.jpg"], correct:1},
+  {text:"U-trubice", images:["obrazky/kelimek.jpg","obrazky/u_trubice.jpg"], correct:1}
 ];
 
 let questions = [];
@@ -225,37 +150,23 @@ const img2 = document.getElementById("img2");
 const nextBtn = document.getElementById("nextBtn");
 const resultsContainer = document.getElementById("resultsContainer");
 
+// Funkce startu nové hry
 function startNewRound(){
-  // 1️⃣ vytvoříme mapu unikátních otázek podle názvu
-  const uniqueQuestionsMap = new Map();
-  allQuestions.forEach(q => {
-    if (!uniqueQuestionsMap.has(q.text)) {
-      uniqueQuestionsMap.set(q.text, q);
-    }
-  });
-
-  // 2️⃣ převedeme zpět na pole unikátních otázek
-  const uniqueQuestions = Array.from(uniqueQuestionsMap.values());
-
-  // 3️⃣ zamícháme a vybereme 10 otázek
-  questions = shuffle(uniqueQuestions).slice(0, 10);
-
-  // 4️⃣ inicializace proměnných
+  questions = shuffle([...allQuestions]).slice(0, 10);
   current = 0;
   results = [];
   answered = false;
   resultsContainer.innerHTML = "";
-
   img1.className = "";
   img2.className = "";
   questionEl.style.display = "block";
   img1.style.display = "inline-block";
   img2.style.display = "inline-block";
   nextBtn.style.display = "none";
-
   loadQuestion();
 }
 
+// Zamíchání otázek
 function shuffle(array){
   for(let i=array.length-1;i>0;i--){
     const j=Math.floor(Math.random()*(i+1));
@@ -264,6 +175,7 @@ function shuffle(array){
   return array;
 }
 
+// Načtení aktuální otázky
 function loadQuestion(){
   const q = questions[current];
   questionEl.textContent = q.text;
@@ -272,9 +184,10 @@ function loadQuestion(){
   img1.className="";
   img2.className="";
   answered=false;
-  nextBtn.style.display = "none"; // tlačítko skryté až do odpovědi
+  nextBtn.style.display = "none";
 }
 
+// Vybrání odpovědi
 function choose(option){
   if(answered) return;
   answered=true;
@@ -291,15 +204,17 @@ function choose(option){
     isCorrect:option===correct
   });
 
-  nextBtn.style.display="block"; // zobraz tlačítko
+  nextBtn.style.display="block";
 }
 
+// Další otázka
 function nextQuestion(){
   current++;
   if(current<questions.length) loadQuestion();
   else showResults();
 }
 
+// Zobrazení výsledků
 function showResults(){
   questionEl.style.display = "none";
   img1.style.display = "none";
@@ -308,29 +223,4 @@ function showResults(){
 
   const errors = results.filter(r=>!r.isCorrect).length;
 
-  let html = `<button id="retryBtn" onclick="startNewRound()">Vypracuj znovu</button>`;
-  html += `<h2>Výsledky</h2>
-           <p style="text-align:center;font-size:18px">
-           Správně: ${results.length-errors} / ${results.length}<br>
-           Chyby: ${errors}</p>`;
-
-  html += `<div class="review-section"><h3>✅ Správné odpovědi</h3><div class="review-row">`;
-  results.forEach(r => {
-    html += `<div class="review-item good"><strong>${r.question}</strong><img src="${r.correctImg}"></div>`;
-  });
-  html += `</div></div>`;
-
-  html += `<div class="review-section"><h3>❌ Špatné odpovědi</h3><div class="review-row">`;
-  results.filter(r=>!r.isCorrect).forEach(r=>{
-    html += `<div class="review-item bad"><strong>${r.question}</strong><img src="${r.chosenImg}"></div>`;
-  });
-  html += `</div></div>`;
-
-  resultsContainer.innerHTML = html;
-}
-
-startNewRound();
-</script>
-
-</body>
-</html>
+  let html = `<button id="retryBtn" onclick="startNew
