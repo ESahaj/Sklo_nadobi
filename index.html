@@ -168,18 +168,28 @@ const img2 = document.getElementById("img2");
 const nextBtn = document.getElementById("nextBtn");
 const resultsContainer = document.getElementById("resultsContainer");
 
+// Funkce na zamíchání pole
+function shuffle(array){
+  for(let i=array.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [array[i],array[j]]=[array[j],array[i]];
+  }
+  return array;
+}
+
+// Start nové hry
 function startNewRound(){
+  // Vybrat unikátní otázky
   const uniqueQuestionsMap = new Map();
   allQuestions.forEach(q => {
     if (!uniqueQuestionsMap.has(q.text)) uniqueQuestionsMap.set(q.text, q);
   });
-
   const uniqueQuestions = Array.from(uniqueQuestionsMap.values());
   questions = shuffle(uniqueQuestions).slice(0, 10);
 
-  // náhodně prohazujeme obrázky pro každou otázku jen jednou
+  // Náhodně prohodíme obrázky u vybraných otázek jen jednou
   questions = questions.map(q => {
-    let newQ = {...q, images:[...q.images]}; // kopie
+    let newQ = {...q, images:[...q.images]};
     if(Math.random() > 0.5){
       [newQ.images[0], newQ.images[1]] = [newQ.images[1], newQ.images[0]];
       newQ.correct = newQ.correct === 0 ? 1 : 0;
@@ -201,6 +211,7 @@ function startNewRound(){
   loadQuestion();
 }
 
+// Načíst otázku
 function loadQuestion(){
   const q = questions[current];
   questionEl.textContent = q.text;
@@ -212,6 +223,7 @@ function loadQuestion(){
   nextBtn.style.display = "none";
 }
 
+// Volba uživatele
 function choose(option){
   if(answered) return;
   answered = true;
@@ -230,12 +242,14 @@ function choose(option){
   nextBtn.style.display = "block";
 }
 
+// Další otázka
 function nextQuestion(){
   current++;
   if(current<questions.length) loadQuestion();
   else showResults();
 }
 
+// Zobrazení výsledků
 function showResults(){
   questionEl.style.display = "none";
   img1.style.display = "none";
@@ -265,6 +279,7 @@ function showResults(){
   resultsContainer.innerHTML = html;
 }
 
+// Start první hry
 startNewRound();
 </script>
 
