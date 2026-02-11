@@ -177,6 +177,16 @@ function startNewRound(){
   const uniqueQuestions = Array.from(uniqueQuestionsMap.values());
   questions = shuffle(uniqueQuestions).slice(0, 10);
 
+  // náhodně prohazujeme obrázky pro každou otázku jen jednou
+  questions = questions.map(q => {
+    let newQ = {...q, images:[...q.images]}; // kopie
+    if(Math.random() > 0.5){
+      [newQ.images[0], newQ.images[1]] = [newQ.images[1], newQ.images[0]];
+      newQ.correct = newQ.correct === 0 ? 1 : 0;
+    }
+    return newQ;
+  });
+
   current = 0;
   results = [];
   answered = false;
@@ -191,23 +201,8 @@ function startNewRound(){
   loadQuestion();
 }
 
-function shuffle(array){
-  for(let i=array.length-1;i>0;i--){
-    const j=Math.floor(Math.random()*(i+1));
-    [array[i],array[j]]=[array[j],array[i]];
-  }
-  return array;
-}
-
 function loadQuestion(){
-  let q = {...questions[current]};
-
-  // Náhodně prohodíme obrázky
-  if(Math.random() > 0.5){
-    [q.images[0], q.images[1]] = [q.images[1], q.images[0]];
-    q.correct = q.correct === 0 ? 1 : 0;
-  }
-
+  const q = questions[current];
   questionEl.textContent = q.text;
   img1.src = q.images[0];
   img2.src = q.images[1];
@@ -215,8 +210,6 @@ function loadQuestion(){
   img2.className = "";
   answered = false;
   nextBtn.style.display = "none";
-
-  questions[current] = q;
 }
 
 function choose(option){
