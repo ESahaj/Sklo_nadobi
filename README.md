@@ -12,7 +12,7 @@ Je určena pro studenty chemie a je součástí školního projektu.
 
 ## Spuštění hry online
 
-Hru si můžete zahrát zde: [Spustit hru](https://ESahaj.github.io/sklo_nadobi/)
+Hru si můžete zahrát zde: [Spustit hru](https://esahaj.github.io/Sklo_nadobi/)
 
 ## Technologie
 
